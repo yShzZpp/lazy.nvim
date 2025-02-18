@@ -117,11 +117,24 @@ return {
   {
     "mhinz/vim-signify",
     config = function()
-      vim.g.signify_vcs_list = { "git" }
+      -- 设置要检查的VCS
+      vim.g.signify_vcs_list = { 'git' }
+      
+      -- 插入模式下指定 updatetime 时间后无操作将缓存区交换文件写入磁盘
       vim.g.signify_cursorhold_insert = 1
+      
+      -- 正常模式下指定 updatetime 时间后无操作将缓存区交换文件写入磁盘
       vim.g.signify_cursorhold_normal = 1
+      
+      -- 缓冲区被修改时更新符号
       vim.g.signify_update_on_bufenter = 0
+      
+      -- vim获取焦点时更新符号
       vim.g.signify_update_on_focusgained = 1
+      
+      -- hunk jumping
+      vim.api.nvim_set_keymap('n', '<leader>gj', '<plug>(signify-next-hunk)', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>gk', '<plug>(signify-prev-hunk)', { noremap = true, silent = true })
     end,
   },
   {
@@ -210,6 +223,10 @@ return {
       vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
       vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", { silent = true })
       vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
+      vim.keymap.set("n", "gp", "<Plug>(coc-diagnostics-next)", { silent = true })
+      vim.keymap.set("n", "gP", "<Plug>(coc-diagnostics-prev)", { silent = true })
+      vim.keymap.set("n", "qf", "<Plug>(coc-fix-current)", { silent = true })
+      vim.keymap.set("n", "<C-s>", "<Plug>(coc-cursors-position)", { silent = true })
     end,
   },
   {
@@ -229,7 +246,12 @@ return {
   {
     "easymotion/vim-easymotion",
     config = function()
-      vim.g.EasyMotion_leader_key = "<leader>"
+      vim.g.EasyMotion_leader_key = '<leader>'
+      vim.api.nvim_set_keymap('n', '<leader>w', '<Plug>(easymotion-w)', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>e', '<Plug>(easymotion-e)', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>b', '<Plug>(easymotion-b)', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>j', '<Plug>(easymotion-j)', { noremap = true, silent = true })
+      vim.api.nvim_set_keymap('n', '<leader>k', '<Plug>(easymotion-k)', { noremap = true, silent = true })
     end,
   },
   {
@@ -352,17 +374,5 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
-  },
-  {
-    "codota/tabnine-nvim",
-    build = "./dl_binaries.sh",
-    config = function()
-      require("tabnine").setup({
-        disable_auto_comment = true,
-        accept_keymap = "<Tab>",
-        dismiss_keymap = "<C-]>",
-        debounce_ms = 800,
-      })
-    end,
   },
 }

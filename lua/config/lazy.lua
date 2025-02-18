@@ -24,6 +24,15 @@ require("lazy").setup({
     -- import your plugins
     { import = "plugins" },
   },
+  git = {
+    filter = false,
+  },
+  colne = {
+    submodules = false,
+  },
+  defaults = {
+    submodules = false,  -- 确保所有插件的 submodules 默认值是 false
+  },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "gotham256" } },

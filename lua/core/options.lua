@@ -15,4 +15,5 @@ vim.opt.fileencodings = "utf-8,ucs-bom,gb18030,gbk,gb2312,cp936"
 -- vim.opt.termencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.autowrite = true
+vim.opt.updatetime = 1500
 
