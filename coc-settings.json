@@ -1,12 +1,24 @@
 {
-  "python.analysis.autoSearchPaths": true, // 可选，自动搜索Python路径
-  "python.analysis.autoImportCompletions": true, // 可选，自动导入补全
-  "python.analysis.useLibraryCodeForTypes": true, // 可选，使用库代码进行类型推断
-	"css.validate": true, // 启用 CSS 语法验证
-  "css.lint.unknownAtRules": "ignore", // 忽略未知的 @ 规则
-  "css.lint.zeroUnits": "warning", // 零单位值的提示
-  "codegexx": {
-    "apiKey": "/83n6slK7HnAWQ==",
-    "apiSecret": "67a5b45e9189cb74332a212f",
+  "python.analysis.autoSearchPaths": true, 
+  "python.analysis.autoImportCompletions": true, 
+  "python.analysis.useLibraryCodeForTypes": true,
+  "clangd.path": "/usr/bin/clangd",
+  "hover.floatConfig": {
+    "border": true,
+    "rounded": false,
+    "highlight": "CocFloating",
+    "borderHighlight": "CocFloatBorder"
+  },
+  "suggest.floatConfig": {
+    "border": true,
+    "rounded": false
+  },
+  "diagnostic.floatConfig": {
+    "border": true,
+    "rounded": false
+  },
+  "signature.floatConfig": {
+    "border": true,
+    "rounded": false
   }
 }

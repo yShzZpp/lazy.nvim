@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
+
 --require("lazy").setup({
 return {
   -- 插件列表
@@ -214,6 +216,7 @@ return {
     "neoclide/coc.nvim",
     branch = "release",
     config = function()
+      local opts = {silent = true, nowait = true, expr = true}
       vim.g.coc_global_extensions = { "coc-clangd", "coc-json" }
       vim.keymap.set("i", "<C-j>", "coc#pum#visible() ? coc#pum#next(1) : '<C-j>'", { expr = true, silent = true })
       vim.keymap.set("i", "<C-k>", "coc#pum#visible() ? coc#pum#prev(1) : '<C-k>'", { expr = true, silent = true })
@@ -223,10 +226,19 @@ return {
       vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
       vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", { silent = true })
       vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
-      vim.keymap.set("n", "gp", "<Plug>(coc-diagnostics-next)", { silent = true })
-      vim.keymap.set("n", "gP", "<Plug>(coc-diagnostics-prev)", { silent = true })
+      -- vim.keymap.set("n", "gp", "<Plug>(coc-diagnostics-next)", { silent = true })
+      vim.keymap.set("n", "gP", function() vim.fn.CocAction("diagnosticPrevious") end, { silent = true })
+      vim.keymap.set("n", "gp", function() vim.fn.CocAction("diagnosticNext") end, { silent = true })
       vim.keymap.set("n", "qf", "<Plug>(coc-fix-current)", { silent = true })
       vim.keymap.set("n", "<C-s>", "<Plug>(coc-cursors-position)", { silent = true })
+
+      -- Ctrl + f : 向下滚动浮动窗口 (如果存在)，否则执行原生的翻页
+      vim.keymap.set("n", "<C-d>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', opts)
+      vim.keymap.set("i", "<C-d>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<Right>"', opts)
+
+      -- Ctrl + b : 向上滚动浮动窗口 (如果存在)，否则执行原生的翻页
+      vim.keymap.set("n", "<C-u>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', opts)
+      vim.keymap.set("i", "<C-u>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<Left>"', opts)
     end,
   },
   {
@@ -258,6 +270,10 @@ return {
     "vim-autoformat/vim-autoformat",
     config = function()
     end,
+  },
+  {
+    'wakatime/vim-wakatime',
+    lazy = false 
   },
   {
     "rhysd/vim-clang-format",
@@ -318,13 +334,27 @@ return {
       vim.keymap.set("n", "<A-j>" ,":BufferLineMovePrev<CR>", {noremap = true, silent = true})
       vim.keymap.set("n", "<A-k>" ,":BufferLineMoveNext<CR>", {noremap = true, silent = true})
       vim.keymap.set("n", "<leader>p" ,":BufferLinePick<CR>", {noremap = true, silent = true})
-      vim.keymap.set("n", "<leader>q" ,":BufferLinePickClose<CR>", {noremap = true, silent = true})
+      -- vim.keymap.set("n", "<leader>q" ,":BufferLinePickClose<CR>", {noremap = true, silent = true})
     end,
+  },
+  {
+      -- 安装插件
+      "famiu/bufdelete.nvim",
+      -- 映射快捷键
+      vim.keymap.set("n", "<leader>q", ":Bdelete<CR>", {noremap = true, silent = true})
+  },
+  {
+      "github/copilot.vim",
+  },
+  {
+    'tpope/vim-fugitive',
+    cmd = { 'G', 'Git', 'Gdiffsplit', 'Gblame' },  -- 延迟加载命令
   },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
+    enabled = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
       provider = "deepseek",
@@ -333,7 +363,8 @@ return {
           __inherited_from = "openai",
           api_key_name = "DEEPSEEK_API_KEY",
           endpoint = "https://api.deepseek.com",
-          model = "deepseek-reasoner",
+          -- model = "deepseek-reasoner",
+          model = "deepseek-code",
         },
       },
     },

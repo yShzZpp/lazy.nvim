@@ -33,10 +33,17 @@ map("n", "<C-h>", "<C-w>h", opt)
 map("n", "t", "`", opt)
 
 -- 其他映射
+-- 缓冲区
 map("n", "<leader>p", '"+p', opt)
 map("n", "<leader>yaw", '"+yaw', opt)
 map("n", "<leader>yy", '"+yy', opt)
 map("v", "<leader>y", '"+y', opt)
+
+-- 文件打开
+map('n', '<leader>Ep', ':e ~/.config/nvim/lua/plugins/init.lua<CR>', opt)
+map('n', '<leader>Ek', ':e ~/.config/nvim/lua/core/keymaps.lua<CR>', opt)
+map('n', '<leader>Et', ':split | resize 12 | e ~/todolists<CR>', opt)
+
 
 -- 行号
 map('n', '<silent> mn', ':set nonu nornu<CR>', opt)
