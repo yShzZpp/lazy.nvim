@@ -19,3 +19,23 @@ vim.api.nvim_set_hl(0, "AvanteConflictIncomingLabel", { link = "AvanteConflictIn
 
 vim.api.nvim_set_hl(0, "AvanteConflictAncestor", { bg = "#7d3b7d", bold = true })
 vim.api.nvim_set_hl(0, "AvanteConflictAncestorLabel", { link = "AvanteConflictAncestor" })
+
+-- 建议的配色：背景深色，前景（文字）高亮
+local highlights = {
+    -- 1. 新增行 (Added)
+    NeogitDiffAdd = { fg = "#a6e3a1", bg = "#1e2e24" },          -- 淡绿字，深绿底
+    NeogitDiffAddHighlight = { fg = "#ffffff", bg = "#2d4f3b" }, -- 白字，中绿底 (光标选中时)
+
+    -- 2. 删除行 (Removed)
+    NeogitDiffDelete = { fg = "#f38ba8", bg = "#311b20" },       -- 淡红字，深红底
+    NeogitDiffDeleteHighlight = { fg = "#ffffff", bg = "#5a2d34" }, -- 白字，中红底
+
+    -- 3. 行内精细修改 (Word-level diff/Refine)
+    -- 这是最容易导致“绿字绿底”的罪魁祸首
+    NeogitHunkHeader = { fg = "#89b4fa", bg = "#24273a" },       -- Diff 块标题
+    NeogitHunkHeaderHighlight = { fg = "#ffffff", bg = "#303446" },
+}
+
+for group, settings in pairs(highlights) do
+    vim.api.nvim_set_hl(0, group, settings)
+end

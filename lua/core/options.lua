@@ -43,7 +43,8 @@ local function apply_gotham_coc_customizations()
     -- 效果：颜色偏紫灰，亮度显著提高，与代码的蓝绿色系形成区分，符合"更淡且不一样"的需求。
     -- gui=italic (斜体) 有助于进一步区分这是"提示"而非"代码"。
     vim.api.nvim_set_hl(0, "CocInlayHintParameter", {
-        fg = "#888ca6", -- Magenta
+        -- fg = "#888ca6", -- Magenta
+        fg = "#F2AAD6", -- 粉色
         bg = "NONE",    -- 保持背景透明，融入代码行
         italic = true   -- 推荐开启斜体，增加语义区分
     })
