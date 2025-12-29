@@ -118,6 +118,7 @@ return {
   },
   {
     "mhinz/vim-signify",
+    enabled = false,
     config = function()
       -- 设置要检查的VCS
       vim.g.signify_vcs_list = { 'git' }
