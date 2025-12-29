@@ -472,5 +472,25 @@ return {
     },
     -- 如果你开启了精细对比，尝试暂时关闭它看看是否清晰点
     disable_insert_on_commit = true,
-  }
+  },
+  {
+    'gutsavgupta/nvim-gemini-companion',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    enabled = false,
+    event = 'VeryLazy',
+    config = function()
+      require('gemini').setup()
+    end,
+    keys = {
+      { '<leader>a', nil, desc = 'Gemini Code' },
+      { '<leader>ag', '<cmd>GeminiToggle<cr>', desc = 'Toggle Gemini sidebar' },
+      { '<leader>ac', '<cmd>GeminiSwitchToCli<cr>', desc = 'Spawn or switch to AI session' },
+      { '<leader>ad', '<cmd>GeminiSendLineDiagnostic<cr>', mode = 'n', desc = 'Send to Gemini' },
+      { '<leader>aD', '<cmd>GeminiSendFileDiagnostic<cr>', mode = 'n', desc = 'Send to Gemini' },
+      { '<leader>aa', '<cmd>GeminiAccept<cr>', mode = 'n', desc = 'Accept Gemini Diff' },
+      { '<leader>ad', '<cmd>GeminiDeny<cr>', mode = 'n', desc = 'Deny Gemini Diff' },
+      { '<leader>as', '<cmd>GeminiSend<cr>', mode = { 'v' }, desc = 'Send selection to Gemini' },
+    },
+  },
+
 }
