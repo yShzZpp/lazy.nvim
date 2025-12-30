@@ -20,6 +20,16 @@ vim.api.nvim_set_hl(0, "AvanteConflictIncomingLabel", { link = "AvanteConflictIn
 vim.api.nvim_set_hl(0, "AvanteConflictAncestor", { bg = "#7d3b7d", bold = true })
 vim.api.nvim_set_hl(0, "AvanteConflictAncestorLabel", { link = "AvanteConflictAncestor" })
 
+------------------------git-----------------------------
+-- 修改为：亮黄文字，深黄/棕色背景
+vim.api.nvim_set_hl(0, "GitsignsChange", { fg = "#EBCB8B", bg = "#3B3E2A", bold = true })
+
+-- 如果你开启了行号高亮 (numhl)，也建议统一：
+vim.api.nvim_set_hl(0, "GitsignsChangeNr", { fg = "#EBCB8B", bg = "#3B3E2A", bold = true })
+
+-- 如果你开启了整行背景高亮 (linehl)，设置一个更淡的黄色背景：
+vim.api.nvim_set_hl(0, "GitsignsChangeLn", { bg = "#2E2E1A" })
+
 -- 建议的配色：背景深色，前景（文字）高亮
 local highlights = {
     -- 1. 新增行 (Added)
@@ -34,8 +44,29 @@ local highlights = {
     -- 这是最容易导致“绿字绿底”的罪魁祸首
     NeogitHunkHeader = { fg = "#89b4fa", bg = "#24273a" },       -- Diff 块标题
     NeogitHunkHeaderHighlight = { fg = "#ffffff", bg = "#303446" },
+
+    -- 新增 (Add): 亮绿字 + 深绿背景
+    GitsignsAdd          = { fg = "#7FFF00", bg = "#1A2F1A", bold = true },
+    GitsignsAddNr        = { fg = "#7FFF00", bg = "#1A2F1A", bold = true },
+    GitsignsAddLn        = { bg = "#142214" },
+
+    -- 修改 (Change): 亮黄字 + 深棕背景
+    GitsignsChange       = { fg = "#EEEE00", bg = "#332B1A", bold = true },
+    GitsignsChangeNr     = { fg = "#EEEE00", bg = "#332B1A", bold = true },
+    GitsignsChangeLn     = { bg = "#241F14" },
+
+    -- 删除 (Delete): 亮红字 + 深红背景
+    GitsignsDelete       = { fg = "#FF4500", bg = "#3F1A1A", bold = true },
+    GitsignsDeleteNr     = { fg = "#FF4500", bg = "#3F1A1A", bold = true },
+    GitsignsDeleteLn     = { bg = "#2F1414" },
+    
+    -- 边界情况处理
+    GitsignsTopdelete    = { fg = "#FF4500", bg = "#3F1A1A", bold = true },
+    GitsignsChangedelete = { fg = "#EEEE00", bg = "#332B1A", bold = true },
 }
 
 for group, settings in pairs(highlights) do
     vim.api.nvim_set_hl(0, group, settings)
 end
+
+------------------------git-----------------------------

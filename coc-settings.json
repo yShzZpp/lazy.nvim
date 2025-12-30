@@ -20,5 +20,12 @@
   "signature.floatConfig": {
     "border": true,
     "rounded": false
-  }
+  },
+  "coc.preferences.formatOnSaveFiletypes": [],
+  "languageserver": {
+    "clangd": {
+      "formatOnSave": false
+    }
+  },
+  "diagnostic.formatOnSave": false
 }

@@ -13,7 +13,7 @@
 --------------------------------------------------------------------------------------------------------------------------
 -- 格式化
 
-vim.api.nvim_create_augroup("FormatMapping", { clear = true })
+-- vim.api.nvim_create_augroup("FormatMapping", { clear = true })
 
 -- 定义映射函数
 local function set_format_keymap(ft, cmd)
@@ -28,13 +28,13 @@ local function set_format_keymap(ft, cmd)
 end
 
 -- C 和 C++ 使用 ClangFormat
-set_format_keymap({ "c", "cpp" }, ":ClangFormat")
+-- set_format_keymap({ "c", "cpp" }, ":ClangFormat")
 
 -- Rust 使用 RustFmt
-set_format_keymap("rust", ":RustFmt")
+-- set_format_keymap("rust", ":RustFmt")
 
 -- Python 和 Shell 使用 Autoformat
-set_format_keymap({ "python", "sh" }, ":Autoformat")
+-- set_format_keymap({ "python", "sh" }, ":Autoformat")
 
 --------------------------------------------------------------------------------------------------------------------------
 -- 打开文件时，去到上次打开的位置
